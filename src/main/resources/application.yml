@@ -3,10 +3,17 @@ com:
     desc: 丢雷老母
     name: mojito
 
-
 spring:
   redis:
     host: 127.0.0.1
     #	host: 192.168.224.225
     port: 6379
     password:
+
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+#      additional-exclude:
+mybatis:
+  mapperLocations: classpath:mapping/*.xml

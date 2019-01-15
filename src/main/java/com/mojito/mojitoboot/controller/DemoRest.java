@@ -1,7 +1,7 @@
 package com.mojito.mojitoboot.controller;
 
-import com.mojito.mojitoboot.domain.ConfigBean;
-import com.mojito.mojitoboot.domain.User;
+import com.mojito.mojitoboot.common.domain.ConfigBean;
+import com.mojito.mojitoboot.common.domain.User;
 import com.mojito.mojitoboot.utils.CSVUtil;
 import com.mojito.mojitoboot.utils.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -76,7 +76,7 @@ public class DemoRest {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("name", name);
-		map.put("xxx","xxxxxx");
+		map.put("xkkkk是酷酷酷酷酷酷xx","xxxxxxaaaaaaaaaaaaaaaaaaaa");
 		return map;
 	}
 

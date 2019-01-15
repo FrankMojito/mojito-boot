@@ -2,7 +2,7 @@ package com.mojito.mojitoboot.utils;
 
 import com.csvreader.CsvReader;
 import com.google.common.collect.Lists;
-import com.mojito.mojitoboot.domain.User;
+import com.mojito.mojitoboot.common.domain.User;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
