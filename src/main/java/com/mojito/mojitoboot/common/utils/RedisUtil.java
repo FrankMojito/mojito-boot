@@ -1,4 +1,4 @@
-package com.mojito.mojitoboot.utils;
+package com.mojito.mojitoboot.common.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
