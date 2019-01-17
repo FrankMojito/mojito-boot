@@ -11,7 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-
+/**
+ * @Auther: Mojito
+ * @Date: 2019/1/17 00:56
+ * @Description:
+ */
 @Service
 public class UserServiceImpl implements UserService {
 

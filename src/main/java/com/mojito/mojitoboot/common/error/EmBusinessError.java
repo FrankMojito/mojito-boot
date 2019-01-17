@@ -1,5 +1,9 @@
 package com.mojito.mojitoboot.common.error;
-
+/**
+ * @Auther: Mojito
+ * @Date: 2019/1/16 18:52
+ * @Description:
+ */
 public enum EmBusinessError implements CommonError{
     PARAMETER_VALIDATION_ERROR(10001, "参数不合法"),
     UNKNOWN_ERROR(10002, "未知错误"),
