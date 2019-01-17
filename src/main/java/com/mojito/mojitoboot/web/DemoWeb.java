@@ -33,7 +33,7 @@ import java.util.Set;
  */
 @RestController
 @Slf4j
-public class DemoRest {
+public class DemoWeb {
 
 	@Autowired
 	private ConfigBean configBean;
