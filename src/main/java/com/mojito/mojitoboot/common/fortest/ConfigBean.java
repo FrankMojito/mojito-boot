@@ -1,4 +1,4 @@
-package com.mojito.mojitoboot.domain;
+package com.mojito.mojitoboot.common.fortest;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

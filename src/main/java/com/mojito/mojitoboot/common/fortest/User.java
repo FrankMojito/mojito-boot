@@ -1,4 +1,4 @@
-package com.mojito.mojitoboot.domain;
+package com.mojito.mojitoboot.common.fortest;
 
 import lombok.Data;
 
@@ -12,9 +12,7 @@ public class User implements Serializable {
 	 */  
 	
 	private static final long serialVersionUID = 1L;
-	
-	
-	
+
 	public User(int id, String name) {
 		this.id = id;
 		this.name = name;

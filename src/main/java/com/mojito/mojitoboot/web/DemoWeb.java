@@ -1,9 +1,9 @@
-package com.mojito.mojitoboot.controller;
+package com.mojito.mojitoboot.web;
 
-import com.mojito.mojitoboot.domain.ConfigBean;
-import com.mojito.mojitoboot.domain.User;
-import com.mojito.mojitoboot.utils.CSVUtil;
-import com.mojito.mojitoboot.utils.RedisUtil;
+import com.mojito.mojitoboot.common.fortest.ConfigBean;
+import com.mojito.mojitoboot.common.fortest.User;
+import com.mojito.mojitoboot.common.utils.CSVUtil;
+import com.mojito.mojitoboot.common.utils.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ import java.util.Set;
  */
 @RestController
 @Slf4j
-public class DemoRest {
+public class DemoWeb {
 
 	@Autowired
 	private ConfigBean configBean;
@@ -76,7 +76,7 @@ public class DemoRest {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("name", name);
-		map.put("xxx","xxxxxx");
+		map.put("xkkkk是酷酷酷酷酷酷xx","xxxxxxaaaaaaaaaaaaaaaaaaaa");
 		return map;
 	}
 
