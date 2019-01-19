@@ -4,6 +4,7 @@ import com.mojito.mojitoboot.biz.bizmodel.UserBO;
 import com.mojito.mojitoboot.biz.service.UserService;
 import com.mojito.mojitoboot.common.mapper.UserPasswordDOMapper;
 import com.mojito.mojitoboot.common.utils.ConvertUtil;
+import com.mojito.mojitoboot.common.viewmodel.UserVO;
 import com.mojito.mojitoboot.core.daomodel.UserDO;
 import com.mojito.mojitoboot.core.daomodel.UserPasswordDO;
 import com.mojito.mojitoboot.core.service.UserCoreService;
@@ -32,5 +33,10 @@ public class UserServiceImpl implements UserService {
         UserPasswordDO userPasswordDO = userPasswordDOMapper.selectByUserId(userDO.getId());
         userBO.setEncrptPassword(userPasswordDO.getPassword());
         return userBO;
+    }
+
+    @Override
+    public Integer setUser(UserVO userVO) {
+        return null;
     }
 }

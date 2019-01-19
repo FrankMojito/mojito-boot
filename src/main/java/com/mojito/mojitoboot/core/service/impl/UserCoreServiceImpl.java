@@ -1,5 +1,6 @@
 package com.mojito.mojitoboot.core.service.impl;
 
+import com.mojito.mojitoboot.biz.bizmodel.UserBO;
 import com.mojito.mojitoboot.common.mapper.UserDOMapper;
 import com.mojito.mojitoboot.core.daomodel.UserDO;
 import com.mojito.mojitoboot.core.service.UserCoreService;
@@ -21,5 +22,10 @@ public class UserCoreServiceImpl implements UserCoreService {
     @Override
     public UserDO getUserById(Integer id) {
         return userDOMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Integer setUser(UserBO userBO) {
+        return null;
     }
 }

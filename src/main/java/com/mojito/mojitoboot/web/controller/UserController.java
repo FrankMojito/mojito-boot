@@ -45,4 +45,11 @@ public class UserController extends BaseController {
         return null;
     }
 
+    public CommonReturnType userRegister(@RequestBody UserVO userVO){
+        if(userVO.getGender()!=null&&userVO.getName()!=null&&userVO.getTelephone()!=null){
+
+        }
+        return null;
+    }
+
 }

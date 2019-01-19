@@ -1,5 +1,6 @@
 package com.mojito.mojitoboot.core.service;
 
+import com.mojito.mojitoboot.biz.bizmodel.UserBO;
 import com.mojito.mojitoboot.core.daomodel.UserDO;
 /**
  * @Auther: Mojito
@@ -9,5 +10,7 @@ import com.mojito.mojitoboot.core.daomodel.UserDO;
 public interface UserCoreService {
 
    public UserDO getUserById(Integer id);
+
+   public Integer setUser(UserBO userBO);
 
 }
