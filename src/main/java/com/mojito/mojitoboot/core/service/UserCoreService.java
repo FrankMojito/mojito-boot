@@ -17,4 +17,5 @@ public interface UserCoreService {
 
    public UserPasswordDO selectPassWordByUserId(Integer id);
 
+   UserDO selectByTelephone(String telephone);
 }

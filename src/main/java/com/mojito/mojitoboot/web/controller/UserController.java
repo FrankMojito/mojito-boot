@@ -6,10 +6,11 @@ import com.mojito.mojitoboot.biz.service.UserService;
 import com.mojito.mojitoboot.common.error.BusinessException;
 import com.mojito.mojitoboot.common.error.EmBusinessError;
 import com.mojito.mojitoboot.common.response.CommonReturnType;
-import com.mojito.mojitoboot.common.utils.ConvertUtil;
+import com.mojito.mojitoboot.common.utils.other.ConvertUtil;
 import com.mojito.mojitoboot.common.utils.fileRenderUtil.EncodeByMD5Util;
 import com.mojito.mojitoboot.common.viewmodel.UserVO;
-import org.apache.tomcat.util.security.MD5Encoder;
+import com.mojito.mojitoboot.core.daomodel.UserDO;
+import com.mojito.mojitoboot.web.URLCnstant.URLConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +29,7 @@ import java.util.Random;
  */
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping(URLConstant.UserURL.USER)
 public class UserController extends BaseController {
 
     @Autowired
@@ -37,7 +38,7 @@ public class UserController extends BaseController {
     @Autowired
     private HttpServletRequest request;
 
-    @RequestMapping("/user-info")
+    @RequestMapping(URLConstant.UserURL.USER_INFO)
     public CommonReturnType getUserById(Integer id) throws BusinessException {
         UserBO userBO = userService.getUserById(id);
         UserVO userVO = ConvertUtil.convert(userBO, UserVO.class);
@@ -47,23 +48,24 @@ public class UserController extends BaseController {
         return CommonReturnType.success(userVO);
     }
 
-    public CommonReturnType userLogin(@RequestBody UserVO user){
-        request.getSession().setAttribute(user.getId().toString(),user);
+    @RequestMapping(URLConstant.UserURL.USER_LOGIN)
+    public CommonReturnType userLogin(String telephone,String password) throws BusinessException {
+        UserBO userBO = userService.validateLogin(telephone,password);
         return null;
     }
 
-    @PostMapping("/user-register")
+    @PostMapping(URLConstant.UserURL.USER_REGISTER)
     public CommonReturnType userRegister(
-            String name,
-            Integer gender,
-            Integer age,
-            String telephone,
-            String otp,
-            String password ) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+        String name,
+        Integer gender,
+        Integer age,
+        String telephone,
+        String otp,
+        String password ) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
 
         String otpInSession = (String) request.getSession().getAttribute(telephone);
-        if(StringUtils.equals(otp,otpInSession)){
-            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        if(!StringUtils.equals(otp,otpInSession)){
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"短信验证码错误");
         }
         UserBO userBO = new UserBO();
         userBO.setAge(age);
@@ -75,7 +77,7 @@ public class UserController extends BaseController {
         return CommonReturnType.success(null);
     }
 
-    @PostMapping("/getotp")
+    @PostMapping(URLConstant.UserURL.GETOTP)
     public CommonReturnType getOtp(String telephone){
         // 生成验证码
         Random random = new Random();

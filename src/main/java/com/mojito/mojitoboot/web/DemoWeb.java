@@ -1,9 +1,9 @@
 package com.mojito.mojitoboot.web;
 
 import com.mojito.mojitoboot.common.fortest.ConfigBean;
-import com.mojito.mojitoboot.common.fortest.User;
-import com.mojito.mojitoboot.common.utils.CSVUtil;
-import com.mojito.mojitoboot.common.utils.RedisUtil;
+import com.mojito.mojitoboot.common.utils.other.CSVUtil;
+import com.mojito.mojitoboot.common.utils.other.RedisUtil;
+import com.mojito.mojitoboot.common.viewmodel.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,6 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author mojito
@@ -50,22 +49,7 @@ public class DemoWeb {
 	 */
 	@RequestMapping("/")
 	public String index() {
-		System.out.println(configBean.getName());
-		User user= new User(2,"按时大大aaaaaaaa我我我的");
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("id", user.getId());
-		map.put("name", user.getName());
-		redisUtil.add(user.getName(), user);
-		System.out.println("asasassa");
-		Set<Object> setMembers = redisUtil.setMembers(user.getName());
-		setMembers.forEach(item -> {
-			System.out.println(item);
-			User user1 = (User) item;
-			System.out.println(user1.getName());
-		});
-		
 		return configBean.getName() + "Hello Spring Boot" + configBean.getDesc();
-		
 	}
 	
 	/**
@@ -109,16 +93,15 @@ public class DemoWeb {
 	 * post请求的用法
 	 */
 	@RequestMapping(value = "/post1", method = RequestMethod.POST)
-	public Map<String, Object> postController(@RequestBody User user) {
+	public Map<String, Object> postController(@RequestBody UserVO user) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", user.getId());
 		map.put("name", user.getName());
-
 		return map;
 	}
 
 	@PostMapping(value = "post2")
-	public Map<String, Object> postController2(@RequestBody User user) {
+	public Map<String, Object> postController2(@RequestBody UserVO user) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", user.getId());
 		map.put("name", user.getName());
@@ -129,7 +112,7 @@ public class DemoWeb {
 	 * put请求的用法
 	 */
 	@RequestMapping(value = "/put1", method = RequestMethod.PUT)
-	public Map<String, Object> putController(@RequestBody User user) {
+	public Map<String, Object> putController(@RequestBody UserVO user) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", user.getId());
 		map.put("name", user.getName());
@@ -137,7 +120,7 @@ public class DemoWeb {
 	}
 
 	@PutMapping(value = "put2")
-	public Map<String, Object> putController2(@RequestBody User user) {
+	public Map<String, Object> putController2(@RequestBody UserVO user) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", user.getId());
 		map.put("name", user.getName());
@@ -167,9 +150,9 @@ public class DemoWeb {
 	 * @param multipartFile
 	 */
 	@PostMapping("/upload")
-	public List<User> singleFileUpload(@RequestParam("file") MultipartFile multipartFile) {
+	public List<UserVO> singleFileUpload(@RequestParam("file") MultipartFile multipartFile) {
 
-		List<User> list = null;
+		List<UserVO> list = null;
 		
 		InputStreamReader isr = null;
 		try {
