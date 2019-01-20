@@ -18,4 +18,6 @@ public class UserVO {
 
     private String telephone;
 
+    private String otp;
+
 }

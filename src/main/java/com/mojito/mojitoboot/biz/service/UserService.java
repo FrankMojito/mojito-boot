@@ -1,6 +1,7 @@
 package com.mojito.mojitoboot.biz.service;
 
 import com.mojito.mojitoboot.biz.bizmodel.UserBO;
+import com.mojito.mojitoboot.common.error.BusinessException;
 import com.mojito.mojitoboot.common.viewmodel.UserVO;
 
 /**
@@ -11,5 +12,5 @@ import com.mojito.mojitoboot.common.viewmodel.UserVO;
 public interface UserService {
     public UserBO getUserById(Integer id);
 
-    public Integer setUser(UserVO userVO);
+    public Integer setUser(UserBO userBO) throws BusinessException;
 }
