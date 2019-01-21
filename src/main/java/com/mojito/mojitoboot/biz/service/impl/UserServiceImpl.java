@@ -6,6 +6,8 @@ import com.mojito.mojitoboot.biz.service.UserService;
 import com.mojito.mojitoboot.common.error.BusinessException;
 import com.mojito.mojitoboot.common.error.EmBusinessError;
 import com.mojito.mojitoboot.common.utils.other.ConvertUtil;
+import com.mojito.mojitoboot.common.utils.validator.ValidationResult;
+import com.mojito.mojitoboot.common.utils.validator.ValidatorImpl;
 import com.mojito.mojitoboot.core.daomodel.UserDO;
 import com.mojito.mojitoboot.core.daomodel.UserPasswordDO;
 import com.mojito.mojitoboot.core.service.UserCoreService;
@@ -24,6 +26,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserCoreService userCoreService;
 
+    @Autowired
+    ValidatorImpl validator;
+
     @Override
     public UserBO getUserById(Integer id) {
         UserDO userDO = userCoreService.getUserById(id);
@@ -34,19 +39,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer setUser(UserBO userBO) throws BusinessException {
+    public Integer userRegister(UserBO userBO) throws BusinessException {
+        Integer count;
         if(userBO == null){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
         }
-        // TODO 校验
+
+        ValidationResult validationResult = validator.validate(userBO);
+        if(validationResult.isHasError()){
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,validationResult.getErrMsg());
+        }
+
         try {
-            userCoreService.setUser(userBO);
+            count = userCoreService.setUser(userBO);
         }catch (DuplicateKeyException ex){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"手机号已注册");
         }
 
-
-        return null;
+        return count;
     }
 
     @Override
@@ -58,7 +68,7 @@ public class UserServiceImpl implements UserService {
         UserBO userBO = ConvertUtil.convert(userDO, UserBO.class);
         UserPasswordDO userPasswordDO = userCoreService.selectPassWordByUserId(userDO.getId());
         userBO.setEncrptPassword(userPasswordDO.getPassword());
-        return null;
+        return userBO;
     }
 
 }

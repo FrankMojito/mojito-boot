@@ -13,7 +13,7 @@ import com.mojito.mojitoboot.core.daomodel.UserPasswordDO;
 public interface UserService {
     public UserBO getUserById(Integer id);
 
-    public Integer setUser(UserBO userBO) throws BusinessException;
+    public Integer userRegister(UserBO userBO) throws BusinessException;
 
     UserBO validateLogin(String telephone, String password) throws BusinessException;
 }

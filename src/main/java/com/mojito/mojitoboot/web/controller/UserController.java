@@ -51,7 +51,10 @@ public class UserController extends BaseController {
     @RequestMapping(URLConstant.UserURL.USER_LOGIN)
     public CommonReturnType userLogin(String telephone,String password) throws BusinessException {
         UserBO userBO = userService.validateLogin(telephone,password);
-        return null;
+
+        request.getSession().setAttribute("HAS_LOGGED_IN",true);
+        request.getSession().setAttribute("LOGIN_USER",userBO);
+        return CommonReturnType.success(null);
     }
 
     @PostMapping(URLConstant.UserURL.USER_REGISTER)
@@ -73,7 +76,10 @@ public class UserController extends BaseController {
         userBO.setName(name);
         userBO.setTelephone(telephone);
         userBO.setEncrptPassword(EncodeByMD5Util.EncodeByMD5(password));
-        userService.setUser(userBO);
+        Integer count = userService.userRegister(userBO);
+        if(count != 1){
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"注册失败");
+        }
         return CommonReturnType.success(null);
     }
 
