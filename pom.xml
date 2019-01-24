@@ -156,7 +156,7 @@
 					<!-- 允许移动文件夹 -->
 					<verbose>true</verbose>
 					<!--允许覆盖文件-->
-					<overwrite>true</overwrite>
+					<overwrite>false</overwrite>
 					<configurationFile>
 						src/main/resources/mybatis-generator.xml
 					</configurationFile>

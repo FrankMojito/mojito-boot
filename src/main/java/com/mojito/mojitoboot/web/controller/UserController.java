@@ -94,8 +94,9 @@ public class UserController extends BaseController {
         // 验证码和手机号关联
         request.getSession().setAttribute(telephone,otp);
 
+        System.out.println("telephone="+telephone+"&otp="+otp);
         // 通过短信通道发送给用户
-        return null;
+        return CommonReturnType.success(null);
     }
 
 }
