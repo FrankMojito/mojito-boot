@@ -29,13 +29,21 @@
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="user_info" domainObjectName="UserDO" enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" >
-        </table>
+        <!--<table tableName="user_info" domainObjectName="UserDO" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" >-->
+        <!--</table>-->
         <!--<table tableName="user_password" domainObjectName="UserPasswordDO" enableCountByExample="false"-->
                <!--enableUpdateByExample="false" enableDeleteByExample="false"-->
                <!--enableSelectByExample="false" >-->
         <!--</table>-->
+        <table tableName="goods" domainObjectName="GoodsDO" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" >
+        </table>
+        <table tableName="goods_stock" domainObjectName="GoodsStockDO" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" >
+        </table>
     </context>
 </generatorConfiguration>

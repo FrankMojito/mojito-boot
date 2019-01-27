@@ -1,4 +1,4 @@
-package com.mojito.mojitoboot.common.utils;
+package com.mojito.mojitoboot.common.utils.other;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

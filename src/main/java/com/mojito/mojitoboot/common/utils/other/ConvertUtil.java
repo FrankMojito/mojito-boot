@@ -1,4 +1,4 @@
-package com.mojito.mojitoboot.common.utils;
+package com.mojito.mojitoboot.common.utils.other;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;

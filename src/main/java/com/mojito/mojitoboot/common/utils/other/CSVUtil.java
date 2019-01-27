@@ -1,8 +1,8 @@
-package com.mojito.mojitoboot.common.utils;
+package com.mojito.mojitoboot.common.utils.other;
 
 import com.csvreader.CsvReader;
 import com.google.common.collect.Lists;
-import com.mojito.mojitoboot.common.fortest.User;
+import com.mojito.mojitoboot.common.viewmodel.UserVO;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -19,10 +19,10 @@ import java.util.List;
 public class CSVUtil {
 	
 
-    public static List<User> importCsv(InputStreamReader inputStreamReader) throws Exception {
+    public static List<UserVO> importCsv(InputStreamReader inputStreamReader) throws Exception {
         CsvReader reader = null;
 //        List<String[]> dataList = new ArrayList<String[]>();
-        ArrayList<User> newArrayList = Lists.newArrayList();
+        ArrayList<UserVO> newArrayList = Lists.newArrayList();
         try {
             reader = new CsvReader(inputStreamReader);
 
@@ -35,9 +35,10 @@ public class CSVUtil {
                 // 按列名读取这条记录的值
                 System.out.println(reader.get(0));
                 System.out.println(reader.get(1));
-                
-                User user = new User(Integer.parseInt(reader.get(0)),reader.get(1));
-                newArrayList.add(user);
+
+//                UserVO user = new UserVO(Integer.parseInt(reader.get(0)),reader.get(1));
+//                newArrayList.add(user);
+                return null;
                 
             }
         } catch (Exception e) {
