@@ -1,11 +1,11 @@
 package com.mojito.mojitoboot.core.service.impl;
 
-import com.mojito.mojitoboot.biz.bizmodel.UserBO;
+import com.mojito.mojitoboot.core.bizmodel.UserBO;
 import com.mojito.mojitoboot.common.mapper.UserDOMapper;
 import com.mojito.mojitoboot.common.mapper.UserPasswordDOMapper;
 import com.mojito.mojitoboot.common.utils.other.ConvertUtil;
-import com.mojito.mojitoboot.core.daomodel.UserDO;
-import com.mojito.mojitoboot.core.daomodel.UserPasswordDO;
+import com.mojito.mojitoboot.common.daomodel.UserDO;
+import com.mojito.mojitoboot.common.daomodel.UserPasswordDO;
 import com.mojito.mojitoboot.core.service.UserCoreService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

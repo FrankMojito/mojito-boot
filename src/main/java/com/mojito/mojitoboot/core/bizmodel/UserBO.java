@@ -1,4 +1,4 @@
-package com.mojito.mojitoboot.biz.bizmodel;
+package com.mojito.mojitoboot.core.bizmodel;
 
 import lombok.Data;
 

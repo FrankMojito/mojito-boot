@@ -1,6 +1,6 @@
 package com.mojito.mojitoboot.common.mapper;
 
-import com.mojito.mojitoboot.core.daomodel.UserDO;
+import com.mojito.mojitoboot.common.daomodel.UserDO;
 
 public interface UserDOMapper {
     /**

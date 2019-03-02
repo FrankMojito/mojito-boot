@@ -1,7 +1,7 @@
 package com.mojito.mojitoboot.biz.service;
 
-import com.mojito.mojitoboot.biz.bizmodel.UserBO;
-import com.mojito.mojitoboot.common.error.BusinessException;
+import com.mojito.mojitoboot.core.bizmodel.UserBO;
+import com.mojito.mojitoboot.web.response.error.BusinessException;
 
 /**
  * @Auther: Mojito

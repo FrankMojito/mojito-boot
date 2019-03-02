@@ -1,4 +1,4 @@
-package com.mojito.mojitoboot.common.viewmodel;
+package com.mojito.mojitoboot.web.viewmodel;
 
 /**
  * @Auther: Mojito

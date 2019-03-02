@@ -12,7 +12,7 @@
         </jdbcConnection>
 
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.mojito.mojitoboot.core.daomodel" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.mojito.mojitoboot.common.daomodel" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>

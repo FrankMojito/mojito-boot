@@ -1,4 +1,4 @@
-package com.mojito.mojitoboot.common.response;
+package com.mojito.mojitoboot.web.response;
 
 public class CommonReturnType {
     private String status;

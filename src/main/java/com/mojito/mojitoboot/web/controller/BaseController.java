@@ -1,14 +1,13 @@
 package com.mojito.mojitoboot.web.controller;
 
 import com.google.common.collect.Maps;
-import com.mojito.mojitoboot.common.error.BusinessException;
-import com.mojito.mojitoboot.common.error.EmBusinessError;
-import com.mojito.mojitoboot.common.response.CommonReturnType;
+import com.mojito.mojitoboot.web.response.error.BusinessException;
+import com.mojito.mojitoboot.web.response.error.EmBusinessError;
+import com.mojito.mojitoboot.web.response.CommonReturnType;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
 /**

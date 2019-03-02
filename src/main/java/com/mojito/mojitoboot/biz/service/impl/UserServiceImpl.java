@@ -1,15 +1,15 @@
 package com.mojito.mojitoboot.biz.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
-import com.mojito.mojitoboot.biz.bizmodel.UserBO;
+import com.mojito.mojitoboot.core.bizmodel.UserBO;
 import com.mojito.mojitoboot.biz.service.UserService;
-import com.mojito.mojitoboot.common.error.BusinessException;
-import com.mojito.mojitoboot.common.error.EmBusinessError;
+import com.mojito.mojitoboot.web.response.error.BusinessException;
+import com.mojito.mojitoboot.web.response.error.EmBusinessError;
 import com.mojito.mojitoboot.common.utils.other.ConvertUtil;
 import com.mojito.mojitoboot.common.utils.validator.ValidationResult;
 import com.mojito.mojitoboot.common.utils.validator.ValidatorImpl;
-import com.mojito.mojitoboot.core.daomodel.UserDO;
-import com.mojito.mojitoboot.core.daomodel.UserPasswordDO;
+import com.mojito.mojitoboot.common.daomodel.UserDO;
+import com.mojito.mojitoboot.common.daomodel.UserPasswordDO;
 import com.mojito.mojitoboot.core.service.UserCoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;

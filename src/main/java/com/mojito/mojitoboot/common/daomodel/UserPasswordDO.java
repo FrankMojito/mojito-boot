@@ -1,4 +1,4 @@
-package com.mojito.mojitoboot.core.daomodel;
+package com.mojito.mojitoboot.common.daomodel;
 
 public class UserPasswordDO {
     /**

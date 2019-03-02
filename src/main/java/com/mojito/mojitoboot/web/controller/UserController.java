@@ -1,19 +1,17 @@
 package com.mojito.mojitoboot.web.controller;
 
 import com.alibaba.druid.util.StringUtils;
-import com.mojito.mojitoboot.biz.bizmodel.UserBO;
+import com.mojito.mojitoboot.core.bizmodel.UserBO;
 import com.mojito.mojitoboot.biz.service.UserService;
-import com.mojito.mojitoboot.common.error.BusinessException;
-import com.mojito.mojitoboot.common.error.EmBusinessError;
-import com.mojito.mojitoboot.common.response.CommonReturnType;
+import com.mojito.mojitoboot.web.response.error.BusinessException;
+import com.mojito.mojitoboot.web.response.error.EmBusinessError;
+import com.mojito.mojitoboot.web.response.CommonReturnType;
 import com.mojito.mojitoboot.common.utils.other.ConvertUtil;
 import com.mojito.mojitoboot.common.utils.fileRenderUtil.EncodeByMD5Util;
-import com.mojito.mojitoboot.common.viewmodel.UserVO;
-import com.mojito.mojitoboot.core.daomodel.UserDO;
+import com.mojito.mojitoboot.web.viewmodel.UserVO;
 import com.mojito.mojitoboot.web.URLCnstant.URLConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
