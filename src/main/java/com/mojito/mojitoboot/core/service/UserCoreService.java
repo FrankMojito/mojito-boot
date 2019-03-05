@@ -1,8 +1,8 @@
 package com.mojito.mojitoboot.core.service;
 
-import com.mojito.mojitoboot.biz.bizmodel.UserBO;
-import com.mojito.mojitoboot.core.daomodel.UserDO;
-import com.mojito.mojitoboot.core.daomodel.UserPasswordDO;
+import com.mojito.mojitoboot.core.bizmodel.UserBO;
+import com.mojito.mojitoboot.common.daomodel.UserDO;
+import com.mojito.mojitoboot.common.daomodel.UserPasswordDO;
 
 /**
  * @Auther: Mojito

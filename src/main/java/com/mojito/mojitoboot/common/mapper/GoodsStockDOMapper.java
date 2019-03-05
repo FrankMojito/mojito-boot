@@ -1,6 +1,6 @@
 package com.mojito.mojitoboot.common.mapper;
 
-import com.mojito.mojitoboot.core.daomodel.GoodsStockDO;
+import com.mojito.mojitoboot.common.daomodel.GoodsStockDO;
 
 public interface GoodsStockDOMapper {
     /**

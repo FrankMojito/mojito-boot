@@ -1,6 +1,6 @@
 package com.mojito.mojitoboot.common.mapper;
 
-import com.mojito.mojitoboot.core.daomodel.UserPasswordDO;
+import com.mojito.mojitoboot.common.daomodel.UserPasswordDO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

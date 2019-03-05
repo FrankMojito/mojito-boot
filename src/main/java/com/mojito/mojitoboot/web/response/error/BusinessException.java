@@ -1,4 +1,4 @@
-package com.mojito.mojitoboot.common.error;
+package com.mojito.mojitoboot.web.response.error;
 /**
  * @Auther: Mojito
  * @Date: 2019/1/16 18:48

@@ -3,7 +3,7 @@ package com.mojito.mojitoboot.web;
 import com.mojito.mojitoboot.common.fortest.ConfigBean;
 import com.mojito.mojitoboot.common.utils.other.CSVUtil;
 import com.mojito.mojitoboot.common.utils.other.RedisUtil;
-import com.mojito.mojitoboot.common.viewmodel.UserVO;
+import com.mojito.mojitoboot.web.viewmodel.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
