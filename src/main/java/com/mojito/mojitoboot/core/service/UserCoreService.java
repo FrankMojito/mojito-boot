@@ -13,7 +13,7 @@ public interface UserCoreService {
 
    public UserDO getUserById(Integer id);
 
-   public Integer setUser(UserBO userBO);
+   public Integer insertUser(UserBO userBO);
 
    public UserPasswordDO selectPassWordByUserId(Integer id);
 

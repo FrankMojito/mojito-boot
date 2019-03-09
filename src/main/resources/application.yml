@@ -10,6 +10,7 @@ spring:
     port: 6379
     password:
 
+# ctrl + shift + alt + /,选择Registry,勾上 Compiler autoMake allow when app running
   devtools:
     restart:
       enabled: true
