@@ -1,16 +1,16 @@
 package com.mojito.mojitoboot.web.controller;
 
 import com.alibaba.druid.util.StringUtils;
-import com.mojito.mojitoboot.core.bizmodel.UserBO;
 import com.mojito.mojitoboot.biz.service.UserService;
+import com.mojito.mojitoboot.common.utils.other.ConvertUtil;
+import com.mojito.mojitoboot.common.utils.requestUtils.CheckMobile;
+import com.mojito.mojitoboot.core.bizmodel.UserBO;
+import com.mojito.mojitoboot.web.URLCnstant.URLConstant;
 import com.mojito.mojitoboot.web.request.UserRegisterRequest;
+import com.mojito.mojitoboot.web.response.CommonReturnType;
 import com.mojito.mojitoboot.web.response.error.BusinessException;
 import com.mojito.mojitoboot.web.response.error.EmBusinessError;
-import com.mojito.mojitoboot.web.response.CommonReturnType;
-import com.mojito.mojitoboot.common.utils.other.ConvertUtil;
-import com.mojito.mojitoboot.common.utils.fileRenderUtil.EncodeByMD5Util;
 import com.mojito.mojitoboot.web.viewmodel.UserVO;
-import com.mojito.mojitoboot.web.URLCnstant.URLConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -69,7 +69,13 @@ public class UserController extends BaseController {
         System.out.println(userRegisterRequest.getPassword());
         userBO.setEncrptPassword(userRegisterRequest.getPassword());
         userBO.setThirdPartyId("wechat");
-        userBO.setRegisterMode("手机");
+        String ua = request.getHeader("USER-AGENT").toLowerCase();
+        if(CheckMobile.check(ua)){
+            ua = "mobile";
+        }else{
+            ua = "pc";
+        }
+        userBO.setRegisterMode(ua);
         Integer count = userService.userRegister(userBO);
         if(count != 1){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"注册失败");

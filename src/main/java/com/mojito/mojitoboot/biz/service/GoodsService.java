@@ -21,4 +21,5 @@ public interface GoodsService {
 
     //商品详情
     GoodsBO getGood(Integer id);
+
 }

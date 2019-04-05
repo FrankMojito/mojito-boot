@@ -37,11 +37,7 @@
                <!--enableUpdateByExample="false" enableDeleteByExample="false"-->
                <!--enableSelectByExample="false" >-->
         <!--</table>-->
-        <table tableName="goods" domainObjectName="GoodsDO" enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" >
-        </table>
-        <table tableName="goods_stock" domainObjectName="GoodsStockDO" enableCountByExample="false"
+        <table tableName="order_info" domainObjectName="OrderDO" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" >
         </table>

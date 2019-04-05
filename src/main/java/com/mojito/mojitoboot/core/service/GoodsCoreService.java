@@ -18,4 +18,6 @@ public interface GoodsCoreService {
 
     GoodsBO selectGoodById(Integer id);
 
+
+    int updateStock(Integer goodsId, Integer amount);
 }

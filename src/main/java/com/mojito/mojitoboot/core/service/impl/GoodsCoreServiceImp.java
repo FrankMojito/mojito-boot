@@ -63,6 +63,12 @@ public class GoodsCoreServiceImp implements GoodsCoreService {
         return getGoodsById(id);
     }
 
+    @Override
+    @Transactional
+    public int updateStock(Integer goodsId, Integer amount) {
+        return goodsStockDOMapper.updateStock(goodsId,amount);
+    }
+
     private GoodsBO getGoodsById(Integer id) {
         GoodsDO goodsDO = goodsDOMapper.selectByPrimaryKey(id);
         if(goodsDO == null){

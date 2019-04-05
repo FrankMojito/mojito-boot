@@ -48,7 +48,7 @@ public class DemoWeb {
 	 * @DeleteMapping = @RequestMapping(method = RequestMethod.DELETE
 	 */
 	@RequestMapping("/")
-	public String index() {
+	public String index(@RequestParam Integer id) {
 		return configBean.getName() + "Hello Spring Boot" + configBean.getDesc();
 	}
 	

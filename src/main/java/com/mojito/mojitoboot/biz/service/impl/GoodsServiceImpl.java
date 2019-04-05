@@ -27,9 +27,7 @@ public class GoodsServiceImpl implements GoodsService {
     @Autowired
     GoodsCoreService goodsCoreService;
 
-
     @Override
-    @Transactional
     public GoodsBO createGoods(GoodsBO goodsBO) throws BusinessException {
 
         ValidationResult validationResult = validator.validate(goodsBO);
