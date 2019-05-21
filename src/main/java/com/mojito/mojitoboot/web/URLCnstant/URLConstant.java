@@ -24,6 +24,11 @@ public interface URLConstant {
      * about goods
      */
     class GoodsUrl{
+        public static final String GOODS = "goods";
+        public static final String GOODS_CREATE = GOODS + LINE + "create";
 
+
+        public static final String GOODS_LIST = GOODS + LINE + "list";
+        public static final String GOOD_DETAIL = GOODS + LINE + "detail";
     }
 }

@@ -1,19 +1,18 @@
 package com.mojito.mojitoboot.web.controller;
 
 import com.alibaba.druid.util.StringUtils;
-import com.mojito.mojitoboot.core.bizmodel.UserBO;
 import com.mojito.mojitoboot.biz.service.UserService;
+import com.mojito.mojitoboot.common.utils.other.ConvertUtil;
+import com.mojito.mojitoboot.common.utils.requestUtils.CheckMobile;
+import com.mojito.mojitoboot.core.bizmodel.UserBO;
+import com.mojito.mojitoboot.web.URLCnstant.URLConstant;
+import com.mojito.mojitoboot.web.request.UserRegisterRequest;
+import com.mojito.mojitoboot.web.response.CommonReturnType;
 import com.mojito.mojitoboot.web.response.error.BusinessException;
 import com.mojito.mojitoboot.web.response.error.EmBusinessError;
-import com.mojito.mojitoboot.web.response.CommonReturnType;
-import com.mojito.mojitoboot.common.utils.other.ConvertUtil;
-import com.mojito.mojitoboot.common.utils.fileRenderUtil.EncodeByMD5Util;
 import com.mojito.mojitoboot.web.viewmodel.UserVO;
-import com.mojito.mojitoboot.web.URLCnstant.URLConstant;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -50,30 +49,33 @@ public class UserController extends BaseController {
     public CommonReturnType userLogin(String telephone,String password) throws BusinessException {
         UserBO userBO = userService.validateLogin(telephone,password);
 
-        request.getSession().setAttribute("HAS_LOGGED_IN",true);
-        request.getSession().setAttribute("LOGIN_USER",userBO);
-        return CommonReturnType.success(null);
+//        request.getSession().setAttribute("HAS_LOGGED_IN",true);
+//        request.getSession().setAttribute("LOGIN_USER",userBO);
+        return CommonReturnType.success(userBO);
     }
 
     @PostMapping(URLConstant.UserURL.USER_REGISTER)
-    public CommonReturnType userRegister(
-        String name,
-        Integer gender,
-        Integer age,
-        String telephone,
-        String otp,
-        String password ) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
-
-        String otpInSession = (String) request.getSession().getAttribute(telephone);
-        if(!StringUtils.equals(otp,otpInSession)){
+    public CommonReturnType userRegister(@RequestBody UserRegisterRequest userRegisterRequest) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+        System.out.println(request.getSession().getAttribute("13974082572")+"aaaaa");
+        String otpInSession = (String) request.getSession().getAttribute(userRegisterRequest.getTelephone());
+        if(!StringUtils.equals(userRegisterRequest.getOtp(),otpInSession)){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"短信验证码错误");
         }
         UserBO userBO = new UserBO();
-        userBO.setAge(age);
-        userBO.setGender(Byte.valueOf(String.valueOf(gender.intValue())));
-        userBO.setName(name);
-        userBO.setTelephone(telephone);
-        userBO.setEncrptPassword(EncodeByMD5Util.EncodeByMD5(password));
+        userBO.setAge(userRegisterRequest.getAge());
+        userBO.setGender(Byte.valueOf(String.valueOf(userRegisterRequest.getGender().intValue())));
+        userBO.setName(userRegisterRequest.getName());
+        userBO.setTelephone(userRegisterRequest.getTelephone());
+        System.out.println(userRegisterRequest.getPassword());
+        userBO.setEncrptPassword(userRegisterRequest.getPassword());
+        userBO.setThirdPartyId("wechat");
+        String ua = request.getHeader("USER-AGENT").toLowerCase();
+        if(CheckMobile.check(ua)){
+            ua = "mobile";
+        }else{
+            ua = "pc";
+        }
+        userBO.setRegisterMode(ua);
         Integer count = userService.userRegister(userBO);
         if(count != 1){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"注册失败");
@@ -81,9 +83,12 @@ public class UserController extends BaseController {
         return CommonReturnType.success(null);
     }
 
-    @PostMapping(URLConstant.UserURL.GETOTP)
-    public CommonReturnType getOtp(String telephone){
+    @GetMapping(URLConstant.UserURL.GETOTP)
+    public CommonReturnType getOtp(@RequestParam String telephone) throws BusinessException {
         // 生成验证码
+        if(org.apache.commons.lang3.StringUtils.isBlank(telephone)){
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        }
         Random random = new Random();
         int i = random.nextInt(99999);
         i += 10000;
@@ -91,7 +96,7 @@ public class UserController extends BaseController {
 
         // 验证码和手机号关联
         request.getSession().setAttribute(telephone,otp);
-
+        System.out.println(request.getSession().getAttribute(telephone));
         System.out.println("telephone="+telephone+"&otp="+otp);
         // 通过短信通道发送给用户
         return CommonReturnType.success(null);

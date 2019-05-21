@@ -8,8 +8,12 @@ import com.mojito.mojitoboot.common.daomodel.GoodsDO;
 import com.mojito.mojitoboot.common.daomodel.GoodsStockDO;
 import com.mojito.mojitoboot.core.service.GoodsCoreService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Auther: Mojito
@@ -17,6 +21,7 @@ import javax.annotation.Resource;
  * @Description:
  */
 @Service
+@Transactional
 public class GoodsCoreServiceImp implements GoodsCoreService {
 
     @Resource
@@ -26,7 +31,7 @@ public class GoodsCoreServiceImp implements GoodsCoreService {
     GoodsStockDOMapper goodsStockDOMapper;
 
     @Override
-    public Integer insertGoods(GoodsBO goodsBO) {
+    public GoodsBO insertGoods(GoodsBO goodsBO) {
 
         GoodsDO goodsDO = ConvertUtil.convert(goodsBO, GoodsDO.class);
         goodsDOMapper.insertSelective(goodsDO);
@@ -37,7 +42,44 @@ public class GoodsCoreServiceImp implements GoodsCoreService {
         goodsStockDO.setStock(goodsBO.getStock());
         goodsStockDOMapper.insertSelective(goodsStockDO);
 
-        return null;
+        return this.getGoodsById(goodsDO.getId());
+    }
+
+    @Override
+    public List<GoodsBO> selectGoodsList() {
+        List<GoodsDO> goodsDOList = goodsDOMapper.selectGoodsList();
+
+        List<GoodsBO> goodsBOS = goodsDOList.stream().map(goodsDO -> {
+            GoodsStockDO goodsStockDO = goodsStockDOMapper.selectByGoodsId(goodsDO.getId());
+            GoodsBO goodsBO = ConvertUtil.convert(goodsDO,GoodsBO.class);
+            goodsBO.setStock(goodsStockDO.getStock());
+            return goodsBO;
+        }).collect(Collectors.toList());
+        return goodsBOS;
+    }
+
+    @Override
+    public GoodsBO selectGoodById(Integer id) {
+        return getGoodsById(id);
+    }
+
+    @Override
+    @Transactional
+    public int updateStock(Integer goodsId, Integer amount) {
+        return goodsStockDOMapper.updateStock(goodsId,amount);
+    }
+
+    private GoodsBO getGoodsById(Integer id) {
+        GoodsDO goodsDO = goodsDOMapper.selectByPrimaryKey(id);
+        if(goodsDO == null){
+            return  null;
+        }
+        GoodsStockDO goodsStockDO = goodsStockDOMapper.selectByGoodsId(id);
+        GoodsBO goodsBO = ConvertUtil.convert(goodsDO, GoodsBO.class);
+        goodsBO.setPrice(new BigDecimal(goodsDO.getPrice()));
+        goodsBO.setStock(goodsStockDO.getStock());
+
+        return goodsBO;
     }
 
 }

@@ -33,7 +33,7 @@ public class UserCoreServiceImpl implements UserCoreService {
 
     @Override
     @Transactional
-    public Integer setUser(UserBO userBO) {
+    public Integer insertUser(UserBO userBO) {
 
         UserDO userDO = ConvertUtil.convert(userBO, UserDO.class);
         userDOMapper.insertSelective(userDO);
@@ -44,7 +44,8 @@ public class UserCoreServiceImpl implements UserCoreService {
     }
 
     public UserPasswordDO selectPassWordByUserId(Integer id){
-       return userPasswordDOMapper.selectByUserId(id);
+        UserPasswordDO userPasswordDO = userPasswordDOMapper.selectByUserId(id);
+        return userPasswordDO;
     }
 
     @Override
